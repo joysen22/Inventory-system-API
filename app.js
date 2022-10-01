@@ -10,5 +10,6 @@ app.use(express.json());
 app.get("/", (req, res, next) => {
   res.status(200).send("server is ruuning");
 });
-
+// Routers & routes
+app.use("/api/v1/manager", require("./Routers/ManagerRoute"));
 module.exports = app;
