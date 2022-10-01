@@ -18,7 +18,7 @@ const brandSchema = new mongoose.Schema(
     },
     webside: {
       type: String,
-      validate: [validator.isUrl, "Please provide a valid Url"],
+      validate: [validator.isURL, "Please provide a valid Url.{PATH}"],
     },
     location: String,
     products: [

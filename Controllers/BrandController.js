@@ -1,9 +1,10 @@
-const Manager = require("../Models/ManagerModel");
+const Brand = require("../Models/BrandModel");
 
-exports.createManager = async (req, res, next) => {
+// create one brand
+exports.createBrand = async (req, res, next) => {
   try {
-    const newManager = new Manager(req.body);
-    const result = await newManager.save();
+    const newBrand = new Brand(req.body);
+    const result = await newBrand.save();
     if (!result) {
       res.status(400).json({
         status: "failed",
@@ -21,10 +22,10 @@ exports.createManager = async (req, res, next) => {
     });
   }
 };
-// get all manager
-exports.getAllManager = async (req, res, next) => {
+// get all Brand
+exports.getAllBrand = async (req, res, next) => {
   try {
-    const result = await Manager.find({});
+    const result = await Brand.find({});
     res.status(200).json({
       status: "success",
       data: result,
@@ -36,21 +37,21 @@ exports.getAllManager = async (req, res, next) => {
     });
   }
 };
-// DELETE Manager
-exports.deleteOneManager = async (req, res, next) => {
+// DELETE Brand
+exports.deleteOneBrand = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const user = await Manager.findById(id);
+    const user = await Brand.findById(id);
     if (!user) {
       return res
         .status(404)
         .json({ status: "failed", message: "Invalied request" });
     }
-    const result = await Manager.findByIdAndDelete(id);
+    const result = await Brand.findByIdAndDelete(id);
 
     res.status(200).json({
       starus: "sucess",
-      message: "Manager delete successfully ",
+      message: " Delete successfully ",
       data: "",
     });
   } catch (err) {
@@ -61,23 +62,23 @@ exports.deleteOneManager = async (req, res, next) => {
   }
 };
 // Update one manager
-exports.updateOneManager = async (req, res, next) => {
+exports.updateOneBrand = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const user = await Manager.findById(id);
+    const user = await Brand.findById(id);
     if (!user) {
       return res
         .status(404)
         .json({ status: "failed", message: "Invalied request" });
     }
-    const result = await Manager.findByIdAndUpdate(id, req.body, {
+    const result = await Brand.findByIdAndUpdate(id, req.body, {
       runValidators: true,
       new: true,
     });
 
     res.status(200).json({
       starus: "sucess",
-      message: "Manager Update successfully ",
+      message: "Update successfully ",
       data: result,
     });
   } catch (err) {
@@ -87,11 +88,11 @@ exports.updateOneManager = async (req, res, next) => {
     });
   }
 };
-// get one Manager
-exports.getOneManager = async (req, res, next) => {
+// get one Brand
+exports.getOneBrand = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const user = await Manager.findById(id);
+    const user = await Brand.findById(id);
     if (!user) {
       return res
         .status(404)
@@ -100,7 +101,6 @@ exports.getOneManager = async (req, res, next) => {
 
     res.status(200).json({
       starus: "sucess",
-      message: "Manager Update successfully ",
       data: user,
     });
   } catch (err) {

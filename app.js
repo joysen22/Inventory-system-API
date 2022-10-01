@@ -12,4 +12,5 @@ app.get("/", (req, res, next) => {
 });
 // Routers & routes
 app.use("/api/v1/manager", require("./Routers/ManagerRoute"));
+app.use("/api/v1/brand", require("./Routers/BrandRoute"));
 module.exports = app;
